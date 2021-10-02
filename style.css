@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;800&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #023047;
+    font-family: "Tajawal", sans;
+    /*hide eventual scrollbars*/
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+#container {
+    margin: auto;
+    max-width: 350px;
+}
+
+h1 {
+    font-weight: 800;
+    color: #8ecae6;
+    margin: 40px;
+}
+
+#calculator {
+    color: #023047;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 4px 4px;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+#calculator > button, p {
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.square {
+    aspect-ratio: 1;
+}
+
+.feedback {
+    background-color: #ffb703;
+    display: flex;
+    align-items: center;
+}
+
+#old-data {
+    font-weight: 300;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    padding-right: 10px;
+    justify-content: flex-end;
+    padding-top: 5%;
+}
+
+#del {
+    background-color: #fb8500;
+    padding-top: -2%;
+}
+
+#latest-data {
+    grid-column-start: 2;
+    grid-column-end: 5;
+    padding-left: 10px;
+    justify-content: flex-start;
+    padding-top: 5%;
+}
+
+.operator {
+    background-color: #219ebc;
+}
+
+.num {
+    background-color: #8ecae6;
+}
+
+#zero {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    /*padding covers half the width, 
+    thus txt is centered to second column of btns*/
+    padding-left: 50%;
+}
+
+#instructions {
+    font-weight: 300;
+    color: #fb8500;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
