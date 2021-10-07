@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500&display=swap');
 
 * {
     margin: 0px;
@@ -24,7 +24,9 @@ body::-webkit-scrollbar {
 h1 {
     font-weight: 800;
     color: #8ecae6;
-    margin: 40px;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    text-align: center;
 }
 
 #calculator {
@@ -37,15 +39,11 @@ h1 {
     align-items: stretch;
 }
 
-#calculator > button, p {
+button, .feedback {
     border: none;
     border-radius: 10px;
     font-weight: 500;
     font-size: 25px;
-}
-
-.square {
-    aspect-ratio: 1;
 }
 
 .feedback {
@@ -54,21 +52,40 @@ h1 {
     align-items: center;
 }
 
-#old-data {
-    font-weight: 300;
+#input {
     grid-column-start: 1;
     grid-column-end: 4;
-    padding-right: 10px;
+    display: flex;
     justify-content: flex-end;
-    padding-top: 5%;
 }
 
-#del {
+#input-data {
+    font-weight: 300;
+    padding-right: 10px;
+    padding-top: 6%;
+}
+
+.clear-last {
+    font-size: 28px;
+    height: 100%;
+    background: none;
+}
+
+.clear-last:hover {
+    color: white;
+}
+
+.clear-all {
     background-color: #fb8500;
-    padding-top: -2%;
 }
 
-#latest-data {
+.clear-all:hover {
+    border: 2px solid #fb8500;
+    background-color: #023047;
+    color: #fb8500;
+}
+
+#result {
     grid-column-start: 2;
     grid-column-end: 5;
     padding-left: 10px;
@@ -76,12 +93,25 @@ h1 {
     padding-top: 5%;
 }
 
-.operator {
+.operator, .equal {
     background-color: #219ebc;
+    aspect-ratio: 1;
+}
+
+.operator:hover, .equal:hover {
+    border: 2px solid #219ebc;
+    background-color: #023047;
+    color: #219ebc;
 }
 
 .num {
     background-color: #8ecae6;
+}
+
+.num:hover {
+    border: 2px solid #8ecae6;
+    background-color: #023047;
+    color: #8ecae6;
 }
 
 #zero {
@@ -94,6 +124,7 @@ h1 {
 
 #instructions {
     font-weight: 300;
+    font-size: 24px;
     color: #fb8500;
     margin-top: 40px;
     margin-left: auto;
