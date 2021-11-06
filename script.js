@@ -1,115 +1,193 @@
-const inputData = document.querySelector('#input-data');
-const result = document.querySelector('#result');
-const clearLast = document.querySelector('.clear-last');
-const clearAll = document.querySelector('.clear-all');
-const equal = document.querySelector('.equal');
-const nums = document.querySelectorAll('.num');
-const operators = document.querySelectorAll('.operator');
+const displayInput = document.querySelector('#input-data');
+const displayResult = document.querySelector('#result');
+const btnClearLast = document.querySelector('.clear-last');
+const btnClearAll = document.querySelector('.clear-all');
+const btnEqual = document.querySelector('.equal');
+const btnNums = document.querySelectorAll('.num');
+const btnOperators = document.querySelectorAll('.operator');
 
-let num1El = '';
-let num2El = '';
-let resultEl = null;
-let lastOperation = '';
+let num1 = '';
+let operator = '';
+let num2 = '';
+let result = '';
 let haveDot = false;
+let feedbackInput = '';
 
-function clearVar(name =''){
-    num1El += num2El + ' ' + name + ' ';
-    inputData.innerText = num1El;
-    num2El = '';
-    result.innerText = resultEl;
-}
-
-function mathOperation() {
-
-    if(lastOperation === '+') {
-        resultEl = parseFloat(resultEl) + parseFloat(num2El);
-    } else if(lastOperation === '-') {
-        resultEl = parseFloat(resultEl) - parseFloat(num2El);
-    } else if(lastOperation === '*') {
-        resultEl = parseFloat(resultEl) * parseFloat(num2El);
-    } else if(lastOperation === '/') {
-        resultEl = parseFloat(resultEl) / parseFloat(num2El);
+//FUNCTIONS
+function operation(n1, o, n2) {
+    let a = parseFloat(n1);
+    let b = parseFloat(n2);
+    switch(o) {
+        case '+': result = a + b;
+        break;
+        case '-': result = a - b;
+        break;
+        case '*': result = a * b;
+        break;
+        default: result = a / b;
+        break;
     }
+    result = (Math.round((result + Number.EPSILON) * 100) / 100).toString();
 }
 
-nums.forEach (num => {
-    num.addEventListener('click', (e) => {
+function noDot() {
+    haveDot = false;
+}
+
+function resetVar() {
+    noDot();
+    num1 = '';
+    operator = '';
+    num2 = '';
+    result = '';
+    displayInput.innerText = '';
+    displayResult.innerText = '';
+}
+
+function showInput(a) {
+    displayInput.innerText = a;
+}
+
+function showResult() {
+    displayResult.innerText = result;
+}
+
+function isOperator(a) {
+    return a.includes('+' || '-' || '*' || '/'); //for some reason vsc does not accept \, so no .test(regex) here
+}
+
+//BUTTONS
+btnNums.forEach (item => {
+    item.addEventListener('click', (e) => {
         if (e.target.innerText === '.' && !haveDot) {
             haveDot = true;
         } else if (e.target.innerText === '.' && haveDot) {
             return;
         }
-        num2El += e.target.innerText;
-        inputData.innerText = num2El;
-    })
-});
 
-operators.forEach(operator => {
-    operator.addEventListener('click', (e) => {
-        if(!num2El) return;
-        haveDot = false;
-        const operatorName = e.target.innerText;
-        if(num1El && num2El && lastOperation){
-            mathOperation();
+        num2 += e.target.innerText;
+
+        if(num1 && num2){
+            feedbackInput = num1 + operator + num2;
+            showInput(feedbackInput);
         } else {
-            resultEl = parseFloat(num2El);
+            feedbackInput = num2;
+            showInput(feedbackInput);
         }
-        clearVar(operatorName);
-        lastOperation = operatorName;
+        })
+});
+
+btnOperators.forEach(item => {
+    item.addEventListener('click', (e) => {
+        if(!num2 && !num1) {return};
+        noDot();
+
+        if(num1 && num2 && operator){
+            operation(num1, operator, num2);
+            showResult();
+            num1 = result;
+            operator = e.target.innerText;
+            num2 = '';
+            result = '';
+            noDot();
+            feedbackInput = num1 + operator;
+            showInput(feedbackInput);
+            return;
+        } else if (!num1) {
+            operator = e.target.innerText;
+            feedbackInput = num2 + operator;
+            showInput(feedbackInput);
+            num1 = num2;
+            num2 = '';
+            return;
+        }
+        operator = e.target.innerText;
+        feedbackInput = num1 + operator;
+        showInput(feedbackInput);
     })
 });
 
-equal.addEventListener('click', (e) => {
-    if(!num1El || !num2El) return;
-    haveDot = false;
-    mathOperation();
-    clearVar();
-    result.innerText = resultEl;
-    num2El = '';
-    num1El = '';
+btnClearAll.addEventListener('click', (e )=> {
+    resetVar();
 });
 
-clearAll.addEventListener('click', (e )=> {
-    result.innerText = '';
-    inputData.innerText = '';
-    let num1El = '';
-    let num2El = '';
-    let resultEl = null;
-    let lastOperation = '';
-    let haveDot = false;
+btnEqual.addEventListener('click', (e) => {
+    if(!num1 || !operator || !num2) return;
+    operation(num1, operator, num2);
+    showResult();
+    num1 = '';
+    operator = '';
+    num2 = result;
+    result = '';
+    noDot();
+    feedbackInput = num2;
+    showInput(feedbackInput);
 });
 
-clearLast.addEventListener('click', (e) => {
-    inputData.innerText = '';
-    num2El = '';
+btnClearLast.addEventListener('click', (e) => {
+    if (displayInput.innerText = '') return;
+
+    let lastInput = feedbackInput.slice(-1);
+    if (isOperator(lastInput)) {
+        operator = '';
+        feedbackInput = feedbackInput.slice(0, -1);
+        showInput(feedbackInput);
+        console.log("num1" + ' ' + num1 + ', ' + 'operator' + ' ' + operator + ', ' + "num2" + '' + num2);
+        return;
+    } else if (!num2) {
+        num1 = num1.slice(0, -1);
+        feedbackInput = feedbackInput.slice(0, -1);
+        showInput(feedbackInput);
+        console.log("num1" + ' ' + num1 + ', ' + 'operator' + ' ' + operator + ', ' + "num2" + '' + num2);
+        return;
+    } else {
+        num2 = num2.slice(0, -1);
+        feedbackInput = feedbackInput.slice(0, -1);
+        showInput(feedbackInput);
+        console.log("num1" + ' ' + num1 + ', ' + 'operator' + ' ' + operator + ', ' + "num2" + '' + num2);
+    }
 });
 
+//KEYBOARD
 function clickButton(key) {
-    nums.forEach(btn => {
-        if(btn.innerText === key) {
-            btn.click();
-        }
-    })
+    btnNums.forEach((button) => {
+      if (button.innerText === key) {
+        button.click();
+      }
+    });
 }
 
 function clickOperator(key) {
-    operators.forEach(btn => {
-        if (btn.innerText === key){
-            btn.click();
+    btnOperators.forEach((operation) => {
+        if (operation.innerText === key) {
+        operation.click();
         }
-    })
+    });
 }
 
 function clickEqual() {
-    equal.click();
+    btnEqual.click();
 }
+
+function clickClearLast() {
+    btnClearLast.click();
+}
+
+function clickClearAll() {
+    btnClearAll.click();
+}
+  
 
 window.addEventListener('keydown', (e) => {
     if (e.key === '0' || e.key === '1' || e.key === '2' || e.key === '3' || e.key === '4' || e.key === '5' || e.key === '6' || e.key === '7' || e.key === '8' || e.key === '9' || e.key === '.'){
-        clickButtonEl(e.key);
+        clickButton(e.key);
     } else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
         clickOperator(e.key);
     } else if (e.key === 'Enter' || e.key === '=') {
         clickEqual();
+    } else if (e.key === 'Backspace') {
+        clickClearLast();
+    } else if (e.key === 'Delete') {
+        clickClearAll();
     }
 })

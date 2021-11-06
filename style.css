@@ -7,7 +7,7 @@
 
 body {
     background-color: #023047;
-    font-family: "Tajawal", sans;
+    font-family: 'Tajawal', sans;
     /*hide eventual scrollbars*/
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
@@ -60,8 +60,10 @@ button, .feedback {
 }
 
 #input-data {
+    font-size: 30px;
     font-weight: 300;
     padding-right: 10px;
+    padding-left: 10px;
     padding-top: 6%;
 }
 
@@ -77,6 +79,7 @@ button, .feedback {
 
 .clear-all {
     background-color: #fb8500;
+    padding-top: 6%;
 }
 
 .clear-all:hover {
@@ -91,6 +94,7 @@ button, .feedback {
     padding-left: 10px;
     justify-content: flex-start;
     padding-top: 5%;
+    font-size: 30px;
 }
 
 .operator, .equal {
@@ -125,6 +129,7 @@ button, .feedback {
 #instructions {
     font-weight: 300;
     font-size: 24px;
+    text-align: justify;
     color: #fb8500;
     margin-top: 40px;
     margin-left: auto;
