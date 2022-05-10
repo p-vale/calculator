@@ -1,137 +1,138 @@
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500&display=swap');
 
 * {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 body {
-    background-color: #023047;
-    font-family: 'Tajawal', sans;
-    /*hide eventual scrollbars*/
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+  background-color: #023047;
+  font-family: 'Tajawal', sans;
+  /*hide eventual scrollbars*/
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
 }
 body::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+  display: none;  /* Safari and Chrome */
 }
 
 #container {
-    margin: auto;
-    max-width: 350px;
+  margin: auto;
+  max-width: 350px;
 }
 
 h1 {
-    font-weight: 800;
-    color: #8ecae6;
-    margin-top: 10%;
-    margin-bottom: 5%;
-    text-align: center;
+  font-weight: 800;
+  color: #8ecae6;
+  margin-top: 10%;
+  margin-bottom: 5%;
+  text-align: center;
 }
 
 #calculator {
-    color: #023047;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    gap: 4px 4px;
-    justify-items: stretch;
-    align-items: stretch;
+  color: #023047;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 4px 4px;
+  justify-items: stretch;
+  align-items: stretch;
 }
 
 button, .feedback {
-    border: none;
-    border-radius: 10px;
-    font-weight: 500;
-    font-size: 25px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 25px;
 }
 
 .feedback {
-    background-color: #ffb703;
-    display: flex;
-    align-items: center;
+  background-color: #ffb703;
+  display: flex;
+  align-items: center;
 }
 
 #input {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    display: flex;
-    justify-content: flex-end;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  display: flex;
+  justify-content: flex-end;
 }
 
 #input-data {
-    font-size: 30px;
-    font-weight: 300;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-top: 6%;
+  font-size: 1em;
+  font-weight: 300;
+  padding-right: 5px;
+  padding-left: 10px;
+  padding-top: 6%;
 }
 
 .clear-last {
-    font-size: 28px;
-    height: 100%;
-    background: none;
+  margin-right: 5px;
+  font-size: 28px;
+  height: 100%;
+  background: none;
 }
 
 .clear-last:hover {
-    color: white;
+  color: white;
 }
 
 .clear-all {
-    background-color: #fb8500;
-    padding-top: 6%;
+  background-color: #fb8500;
+  padding-top: 6%;
 }
 
 .clear-all:hover {
-    border: 2px solid #fb8500;
-    background-color: #023047;
-    color: #fb8500;
+  border: 2px solid #fb8500;
+  background-color: #023047;
+  color: #fb8500;
 }
 
 #result {
-    grid-column-start: 2;
-    grid-column-end: 5;
-    padding-left: 10px;
-    justify-content: flex-start;
-    padding-top: 5%;
-    font-size: 30px;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  padding-left: 10px;
+  justify-content: flex-start;
+  padding-top: 5%;
+  font-size: 30px;
 }
 
 .operator, .equal {
-    background-color: #219ebc;
-    aspect-ratio: 1;
+  background-color: #219ebc;
+  aspect-ratio: 1;
 }
 
 .operator:hover, .equal:hover {
-    border: 2px solid #219ebc;
-    background-color: #023047;
-    color: #219ebc;
+  border: 2px solid #219ebc;
+  background-color: #023047;
+  color: #219ebc;
 }
 
 .num {
-    background-color: #8ecae6;
+  background-color: #8ecae6;
 }
 
 .num:hover {
-    border: 2px solid #8ecae6;
-    background-color: #023047;
-    color: #8ecae6;
+  border: 2px solid #8ecae6;
+  background-color: #023047;
+  color: #8ecae6;
 }
 
 #zero {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    /*padding covers half the width, 
-    thus txt is centered to second column of btns*/
-    padding-left: 50%;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  /*padding covers half the width, 
+  thus txt is centered to second column of btns*/
+  padding-left: 50%;
 }
 
 #instructions {
-    font-weight: 300;
-    font-size: 24px;
-    text-align: justify;
-    color: #fb8500;
-    margin-top: 40px;
-    margin-left: auto;
-    margin-right: auto;
+  font-weight: 300;
+  font-size: 24px;
+  text-align: justify;
+  color: #fb8500;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
